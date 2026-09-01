@@ -9,34 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        body {
-            background: #1a3a40;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        .sea-bg-item {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            font-size: 2.2rem;
-            opacity: 0.22;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-            animation: floatSlow 6s ease-in-out infinite alternate;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
+        body { background: #1a3a40; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; position: relative; overflow-x: hidden; }
+        .sea-bg-item { position: fixed; pointer-events: none; z-index: 0; font-size: 2.2rem; opacity: 0.22; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); animation: floatSlow 6s ease-in-out infinite alternate; }
         .sea-bg-item:nth-child(1) { top: 8%; left: 4%; font-size: 3.5rem; animation-duration: 7s; }
         .sea-bg-item:nth-child(2) { top: 18%; right: 4%; font-size: 3rem; animation-duration: 9s; }
         .sea-bg-item:nth-child(3) { bottom: 15%; left: 5%; font-size: 3.8rem; animation-duration: 8s; }
@@ -45,219 +20,36 @@
         .sea-bg-item:nth-child(6) { top: 52%; right: 2%; font-size: 2.7rem; animation-duration: 8.5s; }
         .sea-bg-item:nth-child(7) { top: 28%; left: 12%; font-size: 2rem; animation-duration: 7.5s; }
         .sea-bg-item:nth-child(8) { bottom: 28%; right: 12%; font-size: 2.3rem; animation-duration: 9.5s; }
-
-        @keyframes floatSlow {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-15px) rotate(8deg); }
-        }
-
-        .calculator-wrapper {
-            display: flex;
-            gap: 20px;
-            align-items: stretch;
-            max-width: 950px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .calculator-card {
-            flex: 1;
-            min-width: 0;
-            background: rgba(38, 70, 83, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 28px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .side-names {
-            background: rgba(38, 70, 83, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 24px;
-            padding: 20px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            min-width: 200px;
-            justify-content: center;
-        }
-
-        .side-names .title {
-            color: #e9c46a;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-        }
-
-        .side-names .name-item {
-            color: #f4a261;
-            font-size: 0.8rem;
-            padding: 8px 12px;
-            border-radius: 16px;
-            background: rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-
-        .side-names .name-item i {
-            color: #e9c46a;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        .header-left, .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .header h1 {
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: #ffffff;
-        }
-
-        .logo-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .kelompok {
-            background: rgba(0,0,0,0.3);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #e9c46a;
-            font-weight: 600;
-        }
-
-        .display {
-            background: #112229;
-            border-radius: 20px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
-            min-height: 85px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .display .expression {
-            color: #a6cdde;
-            font-size: 1rem;
-            min-height: 20px;
-        }
-
-        .display .result {
-            color: #ffffff;
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.1;
-        }
-
-        .mode-tabs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            margin-bottom: 20px;
-        }
-
-        .mode-tabs button {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #e0f2fe;
-            padding: 6px 4px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.6rem;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-        }
-
-        .mode-tabs button.active {
-            background: #e9c46a;
-            color: #1a3a40;
-            border-color: #e9c46a;
-        }
-
-        .mode-tabs button i {
-            font-size: 0.7rem;
-        }
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
-
-        .btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 12px 0;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-
-        .btn:active {
-            transform: scale(0.95);
-            background: rgba(255,255,255,0.25);
-        }
-
+        @keyframes floatSlow { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-15px) rotate(8deg); } }
+        .calculator-wrapper { display: flex; gap: 20px; align-items: stretch; max-width: 950px; width: 100%; position: relative; z-index: 1; }
+        .calculator-card { flex: 1; min-width: 0; background: rgba(38, 70, 83, 0.85); backdrop-filter: blur(8px); border-radius: 28px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .side-names { background: rgba(38, 70, 83, 0.7); backdrop-filter: blur(8px); border-radius: 24px; padding: 20px 16px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; gap: 14px; min-width: 200px; justify-content: center; }
+        .side-names .title { color: #e9c46a; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .side-names .name-item { color: #f4a261; font-size: 0.8rem; padding: 8px 12px; border-radius: 16px; background: rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .side-names .name-item i { color: #e9c46a; }
+        .header { display: flex; justify-content: space-between; align-items: center; color: #fff; margin-bottom: 20px; }
+        .header-left, .header-right { display: flex; align-items: center; gap: 12px; }
+        .header h1 { font-weight: 700; font-size: 1.6rem; color: #ffffff; }
+        .logo-box { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.2); }
+        .logo-box img { width: 100%; height: 100%; object-fit: cover; }
+        .kelompok { background: rgba(0,0,0,0.3); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; color: #e9c46a; font-weight: 600; }
+        .display { background: #112229; border-radius: 20px; padding: 16px 20px; margin-bottom: 20px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.5); min-height: 85px; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; }
+        .display .expression { color: #a6cdde; font-size: 1rem; min-height: 20px; }
+        .display .result { color: #ffffff; font-size: 2.8rem; font-weight: 700; line-height: 1.1; }
+        .mode-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 20px; }
+        .mode-tabs button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: #e0f2fe; padding: 6px 4px; border-radius: 10px; font-weight: 600; font-size: 0.6rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 3px; }
+        .mode-tabs button.active { background: #e9c46a; color: #1a3a40; border-color: #e9c46a; }
+        .mode-tabs button i { font-size: 0.7rem; }
+        .button-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-weight: 600; font-size: 1.1rem; padding: 12px 0; border-radius: 14px; cursor: pointer; transition: 0.1s; }
+        .btn:active { transform: scale(0.95); background: rgba(255,255,255,0.25); }
         .btn.op { background: rgba(244, 162, 97, 0.2); color: #f4a261; }
         .btn.mem { background: rgba(231, 111, 81, 0.2); color: #e76f51; }
         .btn.sci { background: rgba(42, 157, 143, 0.25); color: #2a9d8f; }
         .btn.eq { background: #e9c46a; color: #1a3a40; font-weight: 700; }
-
         .mode-panel { display: none; }
         .mode-panel.active { display: block; }
-
-        .bottom-icons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            font-size: 1.4rem;
-            opacity: 0.5;
-            color: #e9c46a;
-        }
-
+        .bottom-icons { display: flex; justify-content: space-between; margin-top: 15px; font-size: 1.4rem; opacity: 0.5; color: #e9c46a; }
         .btn.span2 { grid-column: span 2; }
         .btn.span3 { grid-column: span 3; }
     </style>
@@ -279,8 +71,6 @@
         <div class="title"><i class="fas fa-users"></i> Anggota</div>
         <div class="name-item"><i class="fas fa-user-circle"></i> Ukhtiya Zalfa Q</div>
         <div class="name-item"><i class="fas fa-user-circle"></i> Ajeng Aprilia Nur L</div>
-        <div class="name-item"><i class="fas fa-user-circle"></i> Revan Alfiano Putra</div>
-        <div class="name-item"><i class="fas fa-user-circle"></i> Ryzal Adhi Nugroho</div>
     </div>
 
     <div class="calculator-card">
@@ -318,7 +108,7 @@
             <button data-mode="persamaan"><i class="fas fa-equals"></i> Persamaan</button>
         </div>
 
-        <!-- MODE BASIC -->
+        <!-- BASIC -->
         <div id="panel-basic" class="mode-panel active">
             <div class="button-grid">
                 <button class="btn mem" data-action="mc">MC</button>
@@ -345,7 +135,7 @@
             </div>
         </div>
 
-        <!-- MODE SCIENTIFIC -->
+        <!-- SCIENTIFIC -->
         <div id="panel-scientific" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="sin">sin</button>
@@ -377,7 +167,7 @@
             </div>
         </div>
 
-        <!-- MODE PROGRAMMER -->
+        <!-- PROGRAMMER -->
         <div id="panel-programmer" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="dec">DEC</button>
@@ -409,7 +199,7 @@
             </div>
         </div>
 
-        <!-- MODE ALGORITMA -->
+        <!-- ALGORITMA -->
         <div id="panel-algoritma" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci span2" data-action="gcd">FPB</button>
@@ -436,7 +226,7 @@
             </div>
         </div>
 
-        <!-- MODE CONVERTER -->
+        <!-- CONVERTER -->
         <div id="panel-converter" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="length">Panjang</button>
@@ -463,7 +253,7 @@
             </div>
         </div>
 
-        <!-- MODE KEUANGAN -->
+        <!-- KEUANGAN -->
         <div id="panel-keuangan" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="bunga">Bunga</button>
@@ -490,7 +280,7 @@
             </div>
         </div>
 
-        <!-- MODE GEOMETRI -->
+        <!-- GEOMETRI -->
         <div id="panel-geometri" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="persegi">Persegi</button>
@@ -517,7 +307,7 @@
             </div>
         </div>
 
-        <!-- MODE STATISTIK -->
+        <!-- STATISTIK -->
         <div id="panel-statistik" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="mean">Mean</button>
@@ -544,7 +334,7 @@
             </div>
         </div>
 
-        <!-- MODE SAINS -->
+        <!-- SAINS -->
         <div id="panel-sains" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="kecepatan">Kecepatan</button>
@@ -571,7 +361,7 @@
             </div>
         </div>
 
-        <!-- MODE WAKTU -->
+        <!-- WAKTU -->
         <div id="panel-waktu" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="selisih">Selisih</button>
@@ -598,7 +388,7 @@
             </div>
         </div>
 
-        <!-- MODE MATRIKS -->
+        <!-- MATRIKS -->
         <div id="panel-matriks" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="determinan">Determinan</button>
@@ -625,7 +415,7 @@
             </div>
         </div>
 
-        <!-- MODE PERSAMAAN -->
+        <!-- PERSAMAAN -->
         <div id="panel-persamaan" class="mode-panel">
             <div class="button-grid">
                 <button class="btn sci" data-action="linear">Linear</button>
@@ -663,9 +453,40 @@
 </div>
 
 <script>
-    // ========== TAB NAVIGATION ==========
-    const tabs = document.querySelectorAll('.mode-tabs button');
-    const panels = document.querySelectorAll('.mode-panel');
+// ==================== TAB NAVIGATION ====================
+const tabs = document.querySelectorAll('.mode-tabs button');
+const panels = document.querySelectorAll('.mode-panel');
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click',
+tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const mode = this.dataset.mode;
+        const target = document.getElementById('panel-' + mode);
+        if (target) target.classList.add('active');
+    });
+});
+
+// ==================== KALKULATOR ENGINE ====================
+let currentInput = '0';
+let expression = '';
+let memory = 0;
+let pendingOperator = null;
+let pendingValue = null;
+let resetNext = false;
+
+const resultEl = document.getElementById('result');
+const expressionEl = document.getElementById('expression');
+
+function updateDisplay() {
+    resultEl.textContent = currentInput;
+    expressionEl.textContent = expression;
+}
+
+function inputDigit(digit) {
+    if (resetNext) {
+        currentInput = '0';
+        resetNext = false;
+    }
+    if (currentInput === '0' && digit !== '.') {
