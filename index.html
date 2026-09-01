@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* BACKGROUND BINATANG LAUT & BINTANG LAUT */
         .sea-bg-item {
             position: fixed;
             pointer-events: none;
@@ -56,7 +55,7 @@
             display: flex;
             gap: 20px;
             align-items: stretch;
-            max-width: 900px;
+            max-width: 950px;
             width: 100%;
             position: relative;
             z-index: 1;
@@ -73,7 +72,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* SIDE PANEL ANGGOTA */
         .side-names {
             background: rgba(38, 70, 83, 0.7);
             backdrop-filter: blur(8px);
@@ -114,7 +112,6 @@
             color: #e9c46a;
         }
 
-        /* HEADER & LOGO */
         .header {
             display: flex;
             justify-content: space-between;
@@ -162,7 +159,6 @@
             font-weight: 600;
         }
 
-        /* DISPLAY KALKULATOR */
         .display {
             background: #112229;
             border-radius: 20px;
@@ -189,7 +185,6 @@
             line-height: 1.1;
         }
 
-        /* TABS MENU MODE - 12 MODE */
         .mode-tabs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -223,7 +218,6 @@
             font-size: 0.7rem;
         }
 
-        /* GRID TOMBOL KALKULATOR */
         .button-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -270,7 +264,6 @@
 </head>
 <body>
 
-    <!-- BINATANG LAUT & BINTANG LAUT BG -->
     <div class="sea-bg-item">⭐</div>
     <div class="sea-bg-item">🐬</div>
     <div class="sea-bg-item">🐳</div>
@@ -282,17 +275,16 @@
 
 <div class="calculator-wrapper">
 
-    <!-- ANGGOTA PANEL KIRI -->
     <div class="side-names">
         <div class="title"><i class="fas fa-users"></i> Anggota</div>
         <div class="name-item"><i class="fas fa-user-circle"></i> Ukhtiya Zalfa Q</div>
         <div class="name-item"><i class="fas fa-user-circle"></i> Ajeng Aprilia Nur L</div>
+        <div class="name-item"><i class="fas fa-user-circle"></i> Revan Alfiano Putra</div>
+        <div class="name-item"><i class="fas fa-user-circle"></i> Ryzal Adhi Nugroho</div>
     </div>
 
-    <!-- MAIN CALCULATOR -->
     <div class="calculator-card">
 
-        <!-- HEADER & LOGO -->
         <div class="header">
             <div class="header-left">
                 <div class="logo-box"><img src="logoSmk.jpeg" alt="SMK" onerror="this.src='https://via.placeholder.com/40'" /></div>
@@ -306,13 +298,11 @@
             </div>
         </div>
 
-        <!-- DISPLAY -->
         <div class="display">
             <div class="expression" id="expression"></div>
             <div class="result" id="result">0</div>
         </div>
 
-        <!-- TAB NAVIGATION - 12 MODE -->
         <div class="mode-tabs">
             <button class="active" data-mode="basic"><i class="fas fa-calculator"></i> Basic</button>
             <button data-mode="scientific"><i class="fas fa-flask"></i> Scientific</button>
@@ -336,25 +326,21 @@
                 <button class="btn mem" data-action="m+">M+</button>
                 <button class="btn mem" data-action="m-">M-</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -367,31 +353,26 @@
                 <button class="btn sci" data-action="tan">tan</button>
                 <button class="btn sci" data-action="log">log</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn sci" data-action="sqrt">√</button>
                 <button class="btn sci" data-action="square">x²</button>
                 <button class="btn sci" data-action="power">xⁿ</button>
                 <button class="btn sci" data-action="reciprocal">1/x</button>
                 <button class="btn sci" data-action="negate">±</button>
-
-                <button class="btn sci" data-val="7">7</button>
-                <button class="btn sci" data-val="8">8</button>
-                <button class="btn sci" data-val="9">9</button>
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
-                <button class="btn sci" data-val="4">4</button>
-                <button class="btn sci" data-val="5">5</button>
-                <button class="btn sci" data-val="6">6</button>
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
-                <button class="btn sci" data-val="1">1</button>
-                <button class="btn sci" data-val="2">2</button>
-                <button class="btn sci" data-val="3">3</button>
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -404,31 +385,26 @@
                 <button class="btn sci" data-action="hex">HEX</button>
                 <button class="btn sci" data-action="oct">OCT</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn sci" data-action="and">AND</button>
                 <button class="btn sci" data-action="or">OR</button>
                 <button class="btn sci" data-action="xor">XOR</button>
                 <button class="btn sci" data-action="not">NOT</button>
                 <button class="btn sci" data-action="lshift">LShift</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -439,25 +415,21 @@
                 <button class="btn sci span2" data-action="gcd">FPB</button>
                 <button class="btn sci span2" data-action="lcm">KPK</button>
                 <button class="btn sci" data-action="isprime">Prima</button>
-
                 <button class="btn sci" data-action="fibonacci">Fibonacci</button>
                 <button class="btn op" data-action="clear">AC</button>
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
-
                 <button class="btn op" data-val="÷">÷</button>
+                <button class="btn op" data-val="×">×</button>
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
-                <button class="btn op" data-val="×">×</button>
-
+                <button class="btn op" data-val="−">−</button>
+                <button class="btn op" data-val="+">+</button>
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
-                <button class="btn op" data-val="−">−</button>
-                <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
                 <button class="btn eq span2" data-action="equals">=</button>
@@ -472,25 +444,21 @@
                 <button class="btn sci" data-action="temperature">Suhu</button>
                 <button class="btn sci" data-action="volume">Volume</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -503,25 +471,21 @@
                 <button class="btn sci" data-action="pajak">Pajak</button>
                 <button class="btn sci" data-action="cicilan">Cicilan</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -534,25 +498,21 @@
                 <button class="btn sci" data-action="segitiga">Segitiga</button>
                 <button class="btn sci" data-action="kubus">Kubus</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -565,25 +525,21 @@
                 <button class="btn sci" data-action="modus">Modus</button>
                 <button class="btn sci" data-action="stddev">Std Dev</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -596,25 +552,21 @@
                 <button class="btn sci" data-action="energi">Energi</button>
                 <button class="btn sci" data-action="daya">Daya</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -627,25 +579,21 @@
                 <button class="btn sci" data-action="kurang">Kurang</button>
                 <button class="btn sci" data-action="umur">Umur</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -658,25 +606,21 @@
                 <button class="btn sci" data-action="invers">Invers</button>
                 <button class="btn sci" data-action="perkalian">Perkalian</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
@@ -689,27 +633,41 @@
                 <button class="btn sci" data-action="sistem">Sistem</button>
                 <button class="btn sci" data-action="pecahan">Pecahan</button>
                 <button class="btn op" data-action="clear">AC</button>
-
                 <button class="btn" data-val="7">7</button>
                 <button class="btn" data-val="8">8</button>
                 <button class="btn" data-val="9">9</button>
                 <button class="btn op" data-val="÷">÷</button>
                 <button class="btn op" data-val="×">×</button>
-
                 <button class="btn" data-val="4">4</button>
                 <button class="btn" data-val="5">5</button>
                 <button class="btn" data-val="6">6</button>
                 <button class="btn op" data-val="−">−</button>
                 <button class="btn op" data-val="+">+</button>
-
                 <button class="btn" data-val="1">1</button>
                 <button class="btn" data-val="2">2</button>
                 <button class="btn" data-val="3">3</button>
                 <button class="btn" data-val="0">0</button>
                 <button class="btn" data-val=".">.</button>
-
                 <button class="btn eq span2" data-action="equals">=</button>
             </div>
         </div>
 
-        <div
+        <div class="bottom-icons">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-fish"></i>
+            <i class="fas fa-water"></i>
+            <i class="fas fa-anchor"></i>
+            <i class="fas fa-star"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    // PINDAH TAB
+    const tabs = document.querySelectorAll('.mode-tabs button');
+    const panels = document.querySelectorAll('.mode-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p
