@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SeaCalc · All-in-One Kalkulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background: #1a3a40;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND BINATANG LAUT & BINTANG LAUT */
+        .sea-bg-item {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 2.2rem;
+            opacity: 0.22;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            animation: floatSlow 6s ease-in-out infinite alternate;
+        }
+
+        .sea-bg-item:nth-child(1) { top: 8%; left: 4%; font-size: 3.5rem; animation-duration: 7s; }
+        .sea-bg-item:nth-child(2) { top: 18%; right: 4%; font-size: 3rem; animation-duration: 9s; }
+        .sea-bg-item:nth-child(3) { bottom: 15%; left: 5%; font-size: 3.8rem; animation-duration: 8s; }
+        .sea-bg-item:nth-child(4) { bottom: 12%; right: 5%; font-size: 3.2rem; animation-duration: 10s; }
+        .sea-bg-item:nth-child(5) { top: 48%; left: 2%; font-size: 2.5rem; animation-duration: 6s; }
+        .sea-bg-item:nth-child(6) { top: 52%; right: 2%; font-size: 2.7rem; animation-duration: 8.5s; }
+        .sea-bg-item:nth-child(7) { top: 28%; left: 12%; font-size: 2rem; animation-duration: 7.5s; }
+        .sea-bg-item:nth-child(8) { bottom: 28%; right: 12%; font-size: 2.3rem; animation-duration: 9.5s; }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(8deg); }
+        }
+
+        .calculator-wrapper {
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator-card {
+            flex: 1;
+            min-width: 0;
+            background: rgba(38, 70, 83, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* SIDE PANEL ANGGOTA */
+        .side-names {
+            background: rgba(38, 70, 83, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 20px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .side-names .title {
+            color: #e9c46a;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .side-names .name-item {
+            color: #f4a261;
+            font-size: 0.8rem;
+            padding: 8px 12px;
+            border-radius: 16px;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .side-names .name-item i {
+            color: #e9c46a;
+        }
+
+        /* HEADER & LOGO */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header h1 {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #ffffff;
+        }
+
+        .logo-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kelompok {
+            background: rgba(0,0,0,0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #e9c46a;
+            font-weight: 600;
+        }
+
+        /* DISPLAY KALKULATOR */
+        .display {
+            background: #112229;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
+            min-height: 85px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .display .expression {
+            color: #a6cdde;
+            font-size: 1rem;
+            min-height: 20px;
+        }
+
+        .display .result {
+            color: #ffffff;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        /* TABS MENU MODE */
+        .mode-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+        }
+
+        .mode-tabs button {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e0f2fe;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .mode-tabs button.active {
+            background: #e9c46a;
+            color: #1a3a40;
+            border-color: #e9c46a;
+        }
+
+        /* GRID TOMBOL KALKULATOR */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 0;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .btn.op { background: rgba(244, 162, 97, 0.2); color: #f4a261; }
+        .btn.mem { background: rgba(231, 111, 81, 0.2); color: #e76f51; }
+        .btn.sci { background: rgba(42, 157, 143, 0.25); color: #2a9d8f; }
+        .btn.eq { background: #e9c46a; color: #1a3a40; font-weight: 700; grid-column: span 5; margin-top: 5px; }
+
+        .mode-panel { display: none; }
+        .mode-panel.active { display: block; }
+
+        .bottom-icons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 1.4rem;
+            opacity: 0.5;
+            color: #e9c46a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BINATANG LAUT & BINTANG LAUT BG -->
+    <div class="sea-bg-item">⭐</div>
+    <div class="sea-bg-item">🐬</div>
+    <div class="sea-bg-item">🐳</div>
+    <div class="sea-bg-item">⭐</div>
+    <div class="sea-bg-item">🐙</div>
+    <div class="sea-bg-item">🦀</div>
+    <div class="sea-bg-item">🐚</div>
+    <div class="sea-bg-item">⭐</div>
+
+<div class="calculator-wrapper">
+
+    <!-- ANGGOTA PANEL KIRI -->
+    <div class="side-names">
+        <div class="title"><i class="fas fa-users"></i> Anggota</div>
+        <div class="name-item"><i class="fas fa-user-circle"></i> Ukhtiya Zalfa Q</div>
+        <div class="name-item"><i class="fas fa-user-circle"></i> Ajeng Aprilia Nur L</div>
+    </div>
+
+    <!-- MAIN CALCULATOR -->
+    <div class="calculator-card">
+
+        <!-- HEADER & LOGO -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-box"><img src="logoSmk.jpeg" alt="SMK" onerror="this.src='https://via.placeholder.com/40'" /></div>
+                <div class="logo-box"><img src="logojurusan.jpeg" alt="RPL" onerror="this.src='https://via.placeholder.com/40'" /></div>
+                <h1>SeaCalc</h1>
+            </div>
+            <div class="header-right">
+                <span class="kelompok"><i class="fas fa-star"></i> Kelompok 5</span>
+                <div class="logo-box"><img src="logo67.jpeg" alt="67" onerror="this.src='https://via.placeholder.com/40'" /></div>
+                <div class="logo-box"><img src="ppm.jpeg" alt="PPM" onerror="this.src='https://via.placeholder.com/40'" /></div>
+            </div>
+        </div>
+
+        <!-- DISPLAY -->
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+
+        <!-- TAB NAVIGATION -->
+        <div class="mode-tabs">
+            <button class="active" data-mode="basic"><i class="fas fa-calculator"></i> Basic</button>
+            <button data-mode="scientific"><i class="fas fa-flask"></i> Scientific</button>
+            <button data-mode="programmer"><i class="fas fa-code"></i> Programmer</button>
+            <button data-mode="algoritma"><i class="fas fa-brain"></i> Algoritma</button>
+            <button data-mode="converter"><i class="fas fa-sync"></i> Converter</button>
+        </div>
+
+        <!-- MODE BASIC -->
+        <div id="panel-basic" class="mode-panel active">
+            <div class="button-grid">
+                <button class="btn mem" data-val="MC">MC</button>
+                <button class="btn mem" data-val="MR">MR</button>
+                <button class="btn mem" data-val="M+">M+</button>
+                <button class="btn mem" data-val="M-">M-</button>
+                <button class="btn op" data-action="clear">AC</button>
+
+                <button class="btn op" data-val="/">÷</button>
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
+                <button class="btn op" data-val="*">×</button>
+
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
+                <button class="btn op" data-val="-">−</button>
+                <button class="btn op" data-val="+">+</button>
+
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
+                <button class="btn" data-val="0">0</button>
+                <button class="btn" data-val=".">.</button>
+
+                <button class="btn eq" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- MODE SCIENTIFIC -->
+        <div id="panel-scientific" class="mode-panel">
+            <div class="button-grid">
+                <button class="btn sci" data-val="sin(">sin</button>
+                <button class="btn sci" data-val="cos(">cos</button>
+                <button class="btn sci" data-val="tan(">tan</button>
+                <button class="btn sci" data-val="log(">log</button>
+                <button class="btn op" data-action="clear">AC</button>
+
+                <button class="btn sci" data-val="^">xⁿ</button>
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
+                <button class="btn op" data-val="/">÷</button>
+
+                <button class="btn sci" data-val="√(">√</button>
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
+                <button class="btn op" data-val="*">×</button>
+
+                <button class="btn sci" data-val="π">π</button>
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
+                <button class="btn op" data-val="-">−</button>
+
+                <button class="btn sci" data-val="(">(</button>
+                <button class="btn sci" data-val=")">)</button>
+                <button class="btn" data-val="0">0</button>
+                <button class="btn" data-val=".">.</button>
+                <button class="btn op" data-val="+">+</button>
+
+                <button class="btn eq" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- MODE PROGRAMMER -->
+        <div id="panel-programmer" class="mode-panel">
+            <div class="button-grid">
+                <button class="btn sci" data-val="AND">AND</button>
+                <button class="btn sci" data-val="OR">OR</button>
+                <button class="btn sci" data-val="NOT">NOT</button>
+                <button class="btn sci" data-val="XOR">XOR</button>
+                <button class="btn op" data-action="clear">AC</button>
+
+                <button class="btn sci" data-val="A">A</button>
+                <button class="btn sci" data-val="B">B</button>
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
+
+                <button class="btn sci" data-val="C">C</button>
+                <button class="btn sci" data-val="D">D</button>
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
+
+                <button class="btn sci" data-val="E">E</button>
+                <button class="btn sci" data-val="F">F</button>
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
+
+                <button class="btn sci" data-val="BIN">BIN</button>
+                <button class="btn sci" data-val="HEX">HEX</button>
+                <button class="btn sci" data-val="DEC">DEC</button>
+                <button class="btn" data-val="0">0</button>
+                <button class="btn op" data-val="+">+</button>
+
+                <button class="btn eq" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- MODE ALGORITMA -->
+        <div id="panel-algoritma" class="mode-panel">
+            <div class="button-grid">
+                <button class="btn sci" data-val="MOD">MOD</button>
+                <button class="btn sci" data-val="DIV">DIV</button>
+                <button class="btn sci" data-val="n!">n!</button>
+                <button class="btn sci" data-val="GCD">GCD</button>
+                <button class="btn op" data-action="clear">AC</button>
+
+                <button class="btn sci" data-val="LCM">LCM</button>
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
+                <button class="btn op" data-val="/">÷</button>
+
+                <button class="btn sci" data-val="FIB">FIB</button>
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
+                <button class="btn op" data-val="*">×</button>
+
+                <button class="btn sci" data-val="PRIME?">PRIME</button>
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
+                <button class="btn op" data-val="-">−</button>
+
+                <button class="btn sci" data-val="(">(</button>
+                <button class="btn sci" data-val=")">)</button>
+                <button class="btn" data-val="0">0</button>
+                <button class="btn" data-val=".">.</button>
+                <button class="btn op" data-val="+">+</button>
+
+                <button class="btn eq" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <!-- MODE CONVERTER -->
+        <div id="panel-converter" class="mode-panel">
+            <div class="button-grid">
+                <button class="btn sci" data-val="CM->M">cm→m</button>
+                <button class="btn sci" data-val="M->KM">m→km</button>
+                <button class="btn sci" data-val="KG->G">kg→g</button>
+                <button class="btn sci" data-val="C->F">°C→°F</button>
+                <button class="btn op" data-action="clear">AC</button>
+
+                <button class="btn" data-val="7">7</button>
+                <button class="btn" data-val="8">8</button>
+                <button class="btn" data-val="9">9</button>
+                <button class="btn op" data-val="DEL">⌫</button>
+                <button class="btn op" data-val="/">÷</button>
+
+                <button class="btn" data-val="4">4</button>
+                <button class="btn" data-val="5">5</button>
+                <button class="btn" data-val="6">6</button>
+                <button class="btn op" data-val="*">×</button>
+                <button class="btn op" data-val="-">−</button>
+
+                <button class="btn" data-val="1">1</button>
+                <button class="btn" data-val="2">2</button>
+                <button class="btn" data-val="3">3</button>
+                <button class="btn op" data-val="+">+</button>
+                <button class="btn" data-val="0">0</button>
+
+                <button class="btn eq" data-action="equals">=</button>
+            </div>
+        </div>
+
+        <div class="bottom-icons">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-fish"></i>
+            <i class="fas fa-water"></i>
+            <i class="fas fa-anchor"></i>
+            <i class="fas fa-star"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    // PINDAH TAB
+    const tabs = document.querySelectorAll('.mode-tabs button');
+    const panels = document.querySelectorAll('.mode-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            
+            tab.classList.add('active');
+            const targetPanel = document.getElementById(`panel-${tab.dataset.mode}`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
+    });
+
+    // INPUT KALKULATOR
+    let currentInput = "";
+    const resultEl = document.getElementById("result");
+    const expressionEl = document.getElementById("expression");
+
+    document.querySelectorAll(".btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const val = button.getAttribute("data-val");
+            const action = button.getAttribute("action") || button.getAttribute("data-action");
+
+            if (action === "clear") {
+                currentInput = "";
+                resultEl.innerText = "0";
+                expressionEl.innerText = "";
+            } else if (action === "equals") {
+                try {
+                    if (currentInput !== "") {
+                        expressionEl.innerText = currentInput;
+                        let cleanInput = currentInput.replace(/×/g, '*').replace(/÷/g, '/').replace(/π/g, 'Math.PI');
+                        let calcResult = eval(cleanInput);
+                        resultEl.innerText = calcResult;
+                        currentInput = calcResult.toString();
+                    }
+                } catch (e) {
+                    resultEl.innerText = "Error";
+                    currentInput = "";
+                }
+            } else if (val) {
+                if (resultEl.innerText === "0" && !isNaN(val)) {
+                    currentInput = val;
+                } else {
+                    currentInput += val;
+                }
+                resultEl.innerText = currentInput;
+            }
+        });
+    });
+</script>
+</body>
+</html>
